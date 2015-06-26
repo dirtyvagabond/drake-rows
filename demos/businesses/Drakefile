@@ -1,0 +1,10 @@
+;
+; Demonstrates multiple inputs, multiple outputs, and auto format conversion
+;
+us.csv, intl.json <- factuals.csv, starbucks.tsv, disneys.csv [rows]
+  (map
+    (fn [row]
+      (if (= "us" (row "country"))
+        (tout "us.csv" (assoc row "UUID" (str (java.util.UUID/randomUUID))))
+        (tout "intl.json" row)))
+   <rows>)
